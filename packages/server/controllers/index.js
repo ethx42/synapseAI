@@ -17,6 +17,18 @@ const transcribeHandler = async (req, res) => {
   });
 };
 
+
+const completionHandler = async (text) => {
+  // const input = "Talk me about seafish, but first tell me what day is today."
+  
+  const completion = await openAi.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [{role: "user", content: text}],
+  });
+  console.log(completion.data.choices[0].message);
+}
+
 module.exports = {
   transcribeHandler,
+  completionHandler
 };
